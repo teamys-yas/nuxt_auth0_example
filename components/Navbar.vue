@@ -1,48 +1,51 @@
 <template>
-  <div class="header">
+  <v-card>
+    <v-toolbar color="cyan" dark flat>
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Your Dashboard</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <!-- <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn> -->
+
+      <template v-slot:extension>
+        <v-tabs v-model="tab" align-with-title>
+          <v-tabs-slider color="yellow"></v-tabs-slider>
+
+          <v-tab v-for="item in items" :key="item">
+            {{ item }}
+          </v-tab>
+        </v-tabs>
+      </template>
+    </v-toolbar>
+  </v-card>
+
+  <!-- <div class="header">
     <nuxt-link to="/" exact>Home</nuxt-link>
-    <nuxt-link to="/about">About</nuxt-link>
     <nuxt-link v-if="$auth.loggedIn" to="/secret">Top Secret</nuxt-link>
     <a v-if="$auth.loggedIn" @click="$auth.logout()">Sign Off</a>
     <a v-else @click="$auth.loginWith('auth0')">Sign In</a>
-  </div>
+  </div> -->
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  computed: mapGetters(['isAuthenticated'])
-}
+  data() {
+    return {
+      tab: null,
+      items: ["web", "shopping", "videos", "images", "news"],
+      text:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    };
+  }
+};
 </script>
-
-<style scoped>
-.header {
-  display: flex;
-  margin-bottom: 20px;
-}
-a {
-  margin-right: 20px;
-  font-size: 14px;
-  color: #999;
-  text-decoration: none;
-  text-transform: uppercase;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
-  transition: color .25s;
-  font-weight: 400;
-  line-height: normal;
-  cursor: pointer;
-}
-a:hover {
-  color: #333;
-}
-a.nuxt-link-active {
-  color: #333;
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
-  font-weight: 600;
-}
-</style>

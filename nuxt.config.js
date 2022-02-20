@@ -52,6 +52,7 @@ export default {
       },
     },
   },
+  buildModules: ["@nuxtjs/vuetify"],
 
   // auth: {
   //   redirect: false,

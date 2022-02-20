@@ -1,38 +1,46 @@
 <template>
   <div>
-    <super-secret-div v-if="$auth.loggedIn"/>
+    <super-secret-div v-if="$auth.loggedIn" />
     <div class="content">
-      <h1>Hello, {{ $auth.loggedIn ? $auth.user.username : 'friend' }}!</h1>
-      <p>
-        This is a super simple example of how to use <a href="https://nuxtjs.org" target="_blank">Nuxt.js</a> and <a href="https://auth0.com" target="_blank">Auth0</a> together.
-      </p>
-      <p v-if="$auth.loggedIn">
-        Now that you're authenticated, maybe you should try going to our <nuxt-link to="/secret" class="link">super secret page</nuxt-link>!
-      </p>
-      <p v-else>
-        You're not authenticated yet. Maybe you want to <a @click="$auth.login()" class="link">sign in</a> and see what happens?
-      </p>
-      <pre>
-        {{ $auth.user }}
-      </pre>
+      <h1>{{ $auth.loggedIn ? "ログインしたよ" : "SIGN INを押してね" }}</h1>
+      <v-card class="left" v-if="$auth.loggedIn">
+        <v-card-title>$auth.user</v-card-title>
+        <v-card-text>
+          {{ $auth.user }}
+        </v-card-text>
+        <v-card-actions>
+          <v-list-item class="grow">
+            <v-list-item-avatar color="grey darken-3">
+              <v-img
+                class="elevation-6"
+                alt=""
+                src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+              ></v-img>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>Evan You</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card-actions>
+      </v-card>
     </div>
   </div>
 </template>
 
 <script>
-import SuperSecretDiv from '~/components/SuperSecretDiv'
+import SuperSecretDiv from "~/components/SuperSecretDiv";
 
 export default {
   components: {
     SuperSecretDiv
   },
-  async asyncData ({ params }) {
-    console.log("test")
+  async asyncData({ params }) {
+    console.log("test");
   },
   beforeMount() {
-    console.log(this.$auth)
-  },
-}
+    console.log(this.$auth);
+  }
+};
 </script>
 
 <style scoped>
@@ -40,5 +48,8 @@ export default {
   max-width: 750px;
   margin: 0 auto;
   text-align: center;
+}
+.left {
+  text-align: left;
 }
 </style>
