@@ -36,6 +36,13 @@ export default {
     redirect: {
       login: "/", // redirect user when not connected
       callback: "/auth/signed-in",
+      logout:
+        "https://" +
+        process.env.AUTH0_DOMAIN +
+        "/v2/logout?returnTo=" +
+        process.env.BASE_URL +
+        "&client_id=" +
+        process.env.AUTH0_CLIENT_ID,
     },
     strategies: {
       local: false,

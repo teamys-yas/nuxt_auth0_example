@@ -12,6 +12,9 @@
       <p v-else>
         You're not authenticated yet. Maybe you want to <a @click="$auth.login()" class="link">sign in</a> and see what happens?
       </p>
+      <pre>
+        {{ $auth.user }}
+      </pre>
     </div>
   </div>
 </template>
@@ -22,7 +25,13 @@ import SuperSecretDiv from '~/components/SuperSecretDiv'
 export default {
   components: {
     SuperSecretDiv
-  }
+  },
+  async asyncData ({ params }) {
+    console.log("test")
+  },
+  beforeMount() {
+    console.log(this.$auth)
+  },
 }
 </script>
 
